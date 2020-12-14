@@ -65,13 +65,13 @@ router.get("/", async (req, res, next) => {
 
 	try {
 		body = await openTable("products.json")
-		console.log(body)
 	} catch (error) {
 		console.error(error)
 		error.httpStatusCode = 500
 		next(error)
 	}
 	body = toArray(body, "_id")
+	console.log(body)
 	if (req.query.hasOwnProperty("category")) {
 		body = body.filter((product) => product.category === req.query.category) //selectByField("products.json", "category", req.query.category, 1)
 	}
